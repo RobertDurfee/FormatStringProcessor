@@ -71,14 +71,14 @@ char * FormatStringProcessor::Resolve(char * formatString)
 
 	char * newFormatString = ReplaceTagsWithIndexes(formatString);
 
-	for (int i = 1; i <= numberOfTags; i++)
+	for (int tagIndex = 1; tagIndex <= numberOfTags; tagIndex++)
 	{
-		char * tag = GetTag(i, formatString);
-		tags[i - 1] = ParseTag(&tag);
+		char * tag = GetTag(tagIndex, formatString);
+		tags[tagIndex - 1] = ParseTag(&tag);
 		free(tag);
-		ReplaceTagIndexWithValue(i, &newFormatString, EvaluateTag(tags[i - 1], NULL));
-		tags[i - 1]->Free();
-		free(tags[i - 1]);
+		ReplaceTagIndexWithValue(tagIndex, &newFormatString, EvaluateTag(tags[tagIndex - 1], NULL));
+		tags[tagIndex - 1]->Free();
+		free(tags[tagIndex - 1]);
 	}
 
 	free(tags);
