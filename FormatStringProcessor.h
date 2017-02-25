@@ -174,8 +174,10 @@ FormatTag * FormatStringProcessor::ParseTag(char ** tag)
 		char * newTag = Resolve((*tag));
 
 		(*tag)[i + 1] = oldCharater;
+		char * oldTag = *tag;
 		(*tag) = CombineTags(newTag, &(*tag)[i + 1]);
 		free(newTag);
+		free(oldTag);
 
 		formatTag->Parameters = (char **)malloc(formatTag->NumberOfParameters * sizeof(char *));
 
