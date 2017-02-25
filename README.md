@@ -22,8 +22,9 @@ Data is not copied into this object from parameters, only pointers. As a result,
 
 ### Resolve
 ```C++
+char * Resolve(char * formatString);
 ```
-A format string is passed as the only parameter in this method. A completed format string is returned by following the routines supplied in the constructor.
+A format string is passed as the only parameter in this method. A completed format string is returned by following the routines supplied in the constructor. This completed format string must be freed by calling the standard `free` function.
 
 Each tag in a format string must follow the following example:
 
@@ -31,6 +32,7 @@ Each tag in a format string must follow the following example:
 
 Note: Tag specifiers can be nested as parameters.
 Note: Tag specifiers return results recursively. That is, the result of `TAG_ONE` is passed into `TAG_TWO` as `formatTagInput`.
+Note: Whitespace is, unfortunately, not tolerated.
 
 ### Example
 An example is not provided due to complexity of implementation. View the [NetworkPacketAnalyzer](https://github.com/robertdurfee/networkpacketanalyzer) for an implementation.
